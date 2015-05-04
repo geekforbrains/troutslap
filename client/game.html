@@ -1,21 +1,30 @@
 <template name="game">
+  <div class="header">
   {{> loginButtons}}
+  </div>
 
   {{> Template.dynamic template=template}}
 
-  <h2>Players</h2>
-  <ul>
+  <div class="players">
+    <h2>Players</h2>
     {{#each players}}
-      <li>{{username}} - health: {{health}}, tokens: {{tokens}}</li>
+      <p class="player">
+        <span class="username">{{username}}</span>
+        <span class="health">health: {{health}}</span>
+        <span class="tokens">tokens: {{tokens}}</span>
+      </p>
     {{/each}}
-  </ul>
+  </div>
 
-  <h2>Events</h2>
-  <ul>
-    {{#each reverse timeline}}
-      <li>{{.}}</li>
-    {{/each}}
-  </ul>
+  <div class="events">
+    <h2>Events</h2>
+    <ul>
+      {{#each reverse timeline}}
+        <li>{{.}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  
 </template>
 
 <template name="login">
