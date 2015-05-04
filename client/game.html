@@ -1,0 +1,36 @@
+<template name="game">
+  {{> loginButtons}}
+
+  {{> Template.dynamic template=template}}
+
+  <h2>Players</h2>
+  <ul>
+    {{#each players}}
+      <li>{{username}} - health: {{health}}, tokens: {{tokens}}</li>
+    {{/each}}
+  </ul>
+
+  <h2>Events</h2>
+  <ul>
+    {{#each reverse timeline}}
+      <li>{{.}}</li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="login">
+  <p>You must login to join game</p>
+</template>
+
+<template name="join">
+  <button id="joinGame">Join Game</button>
+</template>
+
+<template name="wait">
+  <p>Waiting for other player...</p>
+</template>
+
+<template name="gameover">
+  <h2>Game Over!</h2>
+  <p>{{winner}} wins!</p>
+</template>

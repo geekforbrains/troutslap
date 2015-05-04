@@ -1,0 +1,9 @@
+<template name="main">
+
+  {{#if currentUser}}
+    <button id="createGame">Create Game</button>
+  {{else}}
+    {{> loginButtons}}
+  {{/if}}
+
+</template>
