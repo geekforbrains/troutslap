@@ -54,6 +54,17 @@ Template.game.events({
       text: actionText
     });
 
+    var chance = Math.floor((Math.random() * 10) + 1);
+    console.log('chance: ' + chance);
+    var chanceTokens = Math.floor((Math.random() * 3) + 1);
+    if(chance === 3) {
+      timeline.push({
+        icon: 'diamond',
+        text: player.username + ' randomly finds ' + chanceTokens + ' gems, how nice!'
+      });
+      player.tokens += chanceTokens;
+    }
+
     if(winner) {
       timeline.push({
         icon: 'gift',
