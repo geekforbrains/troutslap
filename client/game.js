@@ -54,7 +54,7 @@ Template.game.events({
       text: actionText
     });
 
-    var chance = Math.floor((Math.random() * 6) + 1);
+    var chance = Math.floor((Math.random() * 5) + 1);
     console.log('chance: ' + chance);
     var chanceTokens = Math.floor((Math.random() * 3) + 1);
     if(chance === 3) {
