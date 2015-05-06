@@ -35,8 +35,10 @@
             </div>
             <button id="endTurn" class="btn btn-sm btn-primary">End Turn</button>
           {{else}}
-            {{#if opponent}}
-              <p><small><em>Waiting for other players turn</em></small></p>
+            {{#if gameNotOver}}
+              {{#if opponent}}
+                <p><small><em>Waiting for other players turn</em></small></p>
+              {{/if}}
             {{/if}}
           {{/if}}
         {{else}}
@@ -56,6 +58,7 @@
             Battle Log
           </h4>
         </div>
+
         <ul class="list-group">
           {{#each reverse timeline}}
             <li class="list-group-item"><i class="fa fa-{{icon}}"></i> {{text}}</li>

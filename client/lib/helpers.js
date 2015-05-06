@@ -20,3 +20,8 @@ getOpponent = function() {
   var game = currentGame();
   return game.players[0].user_id == Meteor.userId() ? game.players[1] : game.players[0];
 }
+
+isGameOver = function() {
+  var game = currentGame();
+  return !!game.winner;
+}

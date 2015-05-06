@@ -24,7 +24,7 @@ Template.game.events({
     var game = currentGame();
     var player = getPlayer();
     var opponent = getOpponent();
-    var timeline = action.text.replace('{{player}}', player.username)
+    var actionText = action.text.replace('{{player}}', player.username)
                           .replace('{{opponent}}', opponent.username);
 
     // Ensure player can perform this action
@@ -46,18 +46,26 @@ Template.game.events({
 
     // Update player tokens
     player.tokens -= action.cost;
-    winner = opponent.health <= 0 ? player.username : null;
+    var winner = opponent.health <= 0 ? player.username : null;
+    var timeline = game.timeline;
+
+    timeline.push({
+      icon: action.type === 'attack' ? 'bolt' : 'medkit',
+      text: actionText
+    });
+
+    if(winner) {
+      timeline.push({
+        icon: 'gift',
+        text: winner + ' wins, game over!'
+      });
+    }
 
     Game.update(game._id, {
-      $push: {
-        'timeline': {
-          icon: action.type === 'attack' ? 'bolt' : 'medkit',
-          text: timeline
-        }
-      },
       $set: {
         'winner': winner,
-        'players': [player, opponent]
+        'players': [player, opponent],
+        'timeline': timeline
       }
     });
   },
@@ -94,7 +102,7 @@ Template.game.helpers({
   // Determines if its the current players turn
   playersTurn: function() {
     var game = currentGame();
-    if(game.players.length < 2) return false;
+    if(game.players.length < 2 || isGameOver()) return false;
     return game.whos_turn === Meteor.userId();
   },
 
@@ -113,5 +121,9 @@ Template.game.helpers({
 
   attacks: function() {
     return Actions.find({type: 'attack'});
+  },
+
+  gameNotOver: function() {
+    return !isGameOver();
   }
 });

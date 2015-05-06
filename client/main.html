@@ -26,10 +26,13 @@
       <div class="col-md-6 col-md-offset-3">
         <h4>Join a Game</h4>
         <div class="list-group">
-          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-          <a href="#" class="list-group-item">Morbi leo risus</a>
-          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-          <a href="#" class="list-group-item">Vestibulum at eros</a>
+          {{#each openGames}}
+            <a href="{{pathFor 'game' _id}}" class="list-group-item">
+              {{playerUsername players 0}} is waiting to play...
+            </a>
+          {{else}}
+            <p><em>No available games, try creating one!</em></p>
+          {{/each}}
         </div>
       </div>
     </div>
@@ -38,10 +41,13 @@
       <div class="col-md-6 col-md-offset-3">
         <h4>Active Battles</h4>
         <div class="list-group">
-          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-          <a href="#" class="list-group-item">Morbi leo risus</a>
-          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-          <a href="#" class="list-group-item">Vestibulum at eros</a>
+          {{#each activeGames}}
+            <a href="{{pathFor 'game' _id}}" class="list-group-item">
+              {{playerUsername players 0}} <small>vs</small> {{playerUsername players 1}}
+            </a>
+          {{else}}
+            <p><em>No active battles :(</em></p>
+          {{/each}}
         </div>
       </div>
     </div>
