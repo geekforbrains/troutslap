@@ -1,12 +1,13 @@
-# Meteor Game
+# Troutslap
 
-A fun example game to show-off and learn Meteor
+A silly game built with Meteor.js.
 
-Very minimal and still in development. Use as an example only ;)
+Very minimal and still in development (and probably insecure).
+Use as an example, or for a laugh ;)
 
-Hosted on Heroku!
+Hosted on Heroku <3
 
-http://hackclubgame.herokuapp.com
+http://troutslap.herokuapp.com
 
 
 ## To Do

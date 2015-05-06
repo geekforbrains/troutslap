@@ -4,7 +4,8 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="page-header">
-          <h1>Battle of the Nerds!</h1>
+          <h1>Troutslap!</h1>
+          <p>Drink beer, give wedgies and avoid being trout-slapped!</p>
         </div>
       </div>
     </div>
@@ -23,14 +24,14 @@
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h4>Join a Game</h4>
+        <h4>Get In It!</h4>
         <div class="list-group">
           {{#each openGames}}
             <a href="{{pathFor 'game' _id}}" class="list-group-item">
-              {{playerUsername players 0}} is waiting to play...
+              Join {{playerUsername players 0}}
             </a>
           {{else}}
-            <p><em>No available games, try creating one!</em></p>
+            <p><em>No games, try creating one!</em></p>
           {{/each}}
         </div>
       </div>
@@ -38,14 +39,14 @@
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h4>Active Battles</h4>
+        <h4>Slaptastic Games!</h4>
         <div class="list-group">
           {{#each activeGames}}
             <a href="{{pathFor 'game' _id}}" class="list-group-item">
               {{playerUsername players 0}} <small>vs</small> {{playerUsername players 1}}
             </a>
           {{else}}
-            <p><em>No active battles :(</em></p>
+            <p><em>No trout-slapping :(</em></p>
           {{/each}}
         </div>
       </div>
