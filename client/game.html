@@ -1,45 +1,104 @@
 <template name="game">
-  <div class="header">
-  {{> loginButtons}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1">
+        <div class="page-header">
+          <h4>
+            <i class="fa fa-user"></i>
+            {{#if player}}
+              {{player.username}}
+              <small> - {{player.tokens}} <i class="fa fa-diamond"></i></small>
+            {{else}}
+              [empty]
+            {{/if}}
+          </h4>
+        </div>
+
+        {{#if player}}
+          <div class="progress">
+            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{player.health}}" aria-valuemin="0" aria-valuemax="100" style="width: {{player.health}}%">
+              <i class="fa fa-heart-o"></i>
+            </div>
+          </div>
+
+          {{#if playersTurn}}
+            <h5>Health <small>Heal yourself</small></h5>
+            <div class="list-group">
+              {{#each health}}
+                <a href="#" class="list-group-item action" data-id="{{_id}}">
+                  <span class="badge">
+                    {{effect}} <i class="fa fa-heart"></i> / {{cost}} <i class="fa fa-diamond"></i>
+                  </span>
+                  {{title}}
+                </a>
+              {{/each}}
+            </div>
+            <button id="endTurn" class="btn btn-sm btn-primary">End Turn</button>
+          {{else}}
+            {{#if opponent}}
+              <p><small><em>Waiting for other players turn</em></small></p>
+            {{/if}}
+          {{/if}}
+        {{else}}
+          {{#if currentUser}}
+            <button id="joinGame" class="btn btn-primary">Join Game</button>
+          {{else}}
+            <p>{{> loginButtons}}</p>
+            <p><em>Login or signup to join this game</em></p>
+          {{/if}}
+        {{/if}}
+      </div>
+
+      <div class="col-md-4">
+        <div class="page-header">
+          <h4>
+            <i class="fa fa-tasks"></i>
+            Battle Log
+          </h4>
+        </div>
+        <ul class="list-group">
+          {{#each reverse timeline}}
+            <li class="list-group-item"><i class="fa fa-{{icon}}"></i> {{text}}</li>
+          {{/each}}
+        </ul>
+      </div>
+
+      <div class="col-md-3">
+        <div class="page-header">
+          <h4>
+            <i class="fa fa-user"></i>
+            {{#if opponent}}
+              {{opponent.username}}
+            {{else}}
+              [empty]
+            {{/if}}
+          </h4>
+        </div>
+
+        {{#if opponent}}
+          <div class="progress">
+            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{opponent.health}}" aria-valuemin="0" aria-valuemax="100" style="width: {{opponent.health}}%">
+              <i class="fa fa-heart-o"></i>
+            </div>
+          </div>
+
+          {{#if playersTurn}}
+            <h5>Attacks <small>Damage opponent</small></h5>
+            <div class="list-group">
+              {{#each attacks}}
+                <a href="#" class="list-group-item action" data-id="{{_id}}">
+                  <span class="badge">
+                    {{effect}} <i class="fa fa-heart"></i> / {{cost}} <i class="fa fa-diamond"></i>
+                  </span>
+                  {{title}}
+                </a>
+              {{/each}}
+            </div>
+          {{/if}}
+        {{else}}
+          <p><em>Waiting for another player to join.</em></p>
+        {{/if}}
+      </div>
+    </div>
   </div>
-
-  {{> Template.dynamic template=template}}
-
-  <div class="players">
-    <h2>Players</h2>
-    {{#each players}}
-      <p class="player">
-        <span class="username">{{username}}</span>
-        <span class="health">health: {{health}}</span>
-        <span class="tokens">tokens: {{tokens}}</span>
-      </p>
-    {{/each}}
-  </div>
-
-  <div class="events">
-    <h2>Events</h2>
-    <ul>
-      {{#each reverse timeline}}
-        <li>{{.}}</li>
-      {{/each}}
-    </ul>
-  </div>
-  
-</template>
-
-<template name="login">
-  <p>You must login to join game</p>
-</template>
-
-<template name="join">
-  <button id="joinGame">Join Game</button>
-</template>
-
-<template name="wait">
-  <p>Waiting for other player...</p>
-</template>
-
-<template name="gameover">
-  <h2>Game Over!</h2>
-  <p>{{winner}} wins!</p>
 </template>

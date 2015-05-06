@@ -1,9 +1,51 @@
 <template name="main">
 
-  {{#if currentUser}}
-    <button id="createGame">Create Game</button>
-  {{else}}
-    {{> loginButtons}}
-  {{/if}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="page-header">
+          <h1>Battle of the Nerds!</h1>
+          <p>A simple game built with <a href="#">Meteor.js</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well">
+          {{#if currentUser}}
+            <button class="btn btn-sm btn-default" id="createGame">Create a new Game</button>
+            &nbsp;&nbsp;
+          {{/if}}
+          {{> loginButtons}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h4>Join a Game</h4>
+        <div class="list-group">
+          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+          <a href="#" class="list-group-item">Morbi leo risus</a>
+          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+          <a href="#" class="list-group-item">Vestibulum at eros</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h4>Active Battles</h4>
+        <div class="list-group">
+          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+          <a href="#" class="list-group-item">Morbi leo risus</a>
+          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+          <a href="#" class="list-group-item">Vestibulum at eros</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </template>

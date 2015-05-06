@@ -9,7 +9,10 @@ if(Meteor.isClient) {
 
       var game = _.clone(GameSchema);
       game.players.push(player);
-      game.timeline.push(Meteor.user().username + ' created a game');
+      game.timeline.push({
+        icon: 'plus-square',
+        text: Meteor.user().username + ' created a game'
+      });
       game.created_at = new Date();
 
       var gameId = Game.insert(game);

@@ -11,3 +11,5 @@ accounts-ui
 accounts-password
 iron:router
 less
+twbs:bootstrap
+fortawesome:fontawesome
